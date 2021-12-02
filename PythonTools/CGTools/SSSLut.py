@@ -30,7 +30,7 @@ def integrate_up(theta, radius, accuracy=.1, use_sphere = False):
         result = [0, 0, 0]
         b = -np.math.pi
         while b <= np.math.pi:
-            result += np.multiply(SumOfGaussians.saturate(sample_light(theta, b)), SumOfGaussians.R(b, radius))
+            result += np.multiply(SumOfGaussians.saturate(sample_light(theta, b)), SumOfGaussians.R(b,radius))
             b += delta_b
         return result
 
@@ -66,10 +66,16 @@ def integrate_bottom(radius, accuracy=.1, use_sphere = False):
 
 
 
-def integrate(theta, thickness, accuracy=.1):
-    up = integrate_up(theta, thickness, accuracy)
-    bottom = integrate_bottom(thickness, accuracy)
-    return [up[0] / bottom[0], up[1] / bottom[1], up[2] / bottom[2]]
+def integrate(theta, thickness, accuracy=.1, use_sphere = False):
+    if use_sphere:
+        up = integrate_up(theta, thickness, accuracy=accuracy, use_sphere=True)
+        bottom = integrate_bottom(thickness, accuracy=accuracy, use_sphere=True)
+        return [up[0] / bottom[0], up[1] / bottom[1], up[2] / bottom[2]]
+    else:
+        up = integrate_up(theta, thickness, accuracy)
+        bottom = integrate_bottom(thickness, accuracy)
+        return [up[0] / bottom[0], up[1] / bottom[1], up[2] / bottom[2]]
+
 
 
 
@@ -84,7 +90,7 @@ dst = np.zeros((height, width, 3))
 for h in range(0, height):
     for w in range(0, width):
         uv = [w / width - .5, h / height - .5]
-        col = integrate(np.acos(uv[0]), uv[1],accuracy=.1)
+        col = integrate(np.math.acos(uv[0]), uv[1],accuracy=.1)
 
         # print(col)
         dst[w, h] = [col[0] * 255, col[1] * 255, col[2] * 255]

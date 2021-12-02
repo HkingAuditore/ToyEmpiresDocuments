@@ -35,33 +35,46 @@ def gaussian2(v, r):
 
 
 @dispatch(object)
-def R(d, l=light_weights_tuples, vl=v):
+def R_origin(d, l=light_weights_tuples, vl=v):
+    """
+
+    :param d: 距离
+    :param l:
+    :param vl:
+    :return:
+    """
     s = [0, 0, 0]
     for i, t in enumerate(l):
         r, g, b = t
         v = [r, g, b]
         # v /= np.linalg.norm(v)
         # print(v)
-        s[0] += v[0] * gaussian2(vl[i], d)
-        s[1] += v[1] * gaussian2(vl[i], d)
-        s[2] += v[2] * gaussian2(vl[i], d)
+        s[0] += v[0] * gaussian(vl[i], d)
+        s[1] += v[1] * gaussian(vl[i], d)
+        s[2] += v[2] * gaussian(vl[i], d)
     return s
 
 
 @dispatch(Number, Number, Number)
 def R(a, b, r):
     d = r * np.sqrt(2 - 2 * np.cos(a) * np.cos(b))
-    return R(d)
+    return R_origin(d)
 
 @dispatch(Number, Number)
 def R(a, r):
+    """
+
+    :param a: 角度
+    :param r: 半径
+    :return:
+    """
     d = 2 * r *np.sin(.5 * a)
-    return R(d)
+    return R_origin(d)
 
 @dispatch(Number, Number, Number, list, list)
 def R(a, b, r, l=light_weights_tuples, vl=v):
     d = r * np.sqrt(2 - 2 * np.cos(a) * np.cos(b))
-    return R(d, l, vl)
+    return R_origin(d, l, vl)
 
 def G1(Neg_r_2, v):
     return np.exp(Neg_r_2)
