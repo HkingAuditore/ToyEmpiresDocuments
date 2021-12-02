@@ -24,14 +24,18 @@ plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
 def gaussian(v, r):
     return (1 / (2 * np.pi * v)) * np.exp(-np.power(r, 2) / (2 * v))
+def gaussian2(v, r):
+    return np.exp(-np.power(r, 2) / v)
+def gaussian3(v, r):
+    return (1 / np.sqrt(2 * np.pi * v)) * np.exp(-np.power(r, 2) / (2 * v))
+def norm_diff(r,d):
+    return saturate(np.exp(-r/d) + np.exp(-r/(3*d)) / (8 * np.pi * d *r))
 
 
 def saturate(v):
     return max(0, min(v, 1))
 
 
-def gaussian2(v, r):
-    return np.exp(-np.power(r, 2) / v)
 
 
 @dispatch(object)
@@ -68,7 +72,7 @@ def R(a, r):
     :param r: 半径
     :return:
     """
-    d = 2 * r *np.sin(.5 * a)
+    d = np.abs(2 * r *np.sin(.5 * a))
     return R_origin(d)
 
 @dispatch(Number, Number, Number, list, list)
@@ -76,48 +80,6 @@ def R(a, b, r, l=light_weights_tuples, vl=v):
     d = r * np.sqrt(2 - 2 * np.cos(a) * np.cos(b))
     return R_origin(d, l, vl)
 
-def G1(Neg_r_2, v):
-    return np.exp(Neg_r_2)
-
-def G2(Neg_r_2, v):
-    v2 = 2.0 * v
-    return 1.0/(v2 * np.math.pi) * np.exp(Neg_r_2/v2)
-
-def Cal(distance,G):
-    Neg_r_2 = -np.multiply(distance,distance)
-    rgb = [0,0,0]
-    g = [G(Neg_r_2 , 0.0064),
-         G(Neg_r_2 , 0.0484),
-         G(Neg_r_2 , 0.1870),
-         G(Neg_r_2 , 0.5670),
-         G(Neg_r_2 , 1.9900),
-         G(Neg_r_2 , 7.4100),
-         ]
-    rgb[0] += 0.233 *g[0] +\
-              0.100 *g[1] +\
-              0.118 *g[2] +\
-              0.113 *g[3] +\
-              0.358 *g[4] +\
-              0.078 *g[5]
-    rgb[1] += 0.455 *g[0] +\
-              0.336 *g[1] +\
-              0.198 *g[2] +\
-              0.007 *g[3] +\
-              0.004 *g[4] +\
-              0.000 *g[5]
-    rgb[2] += 0.649 *g[0] +\
-              0.344 *g[1] +\
-              0.000 *g[2] +\
-              0.007 *g[3] +\
-              0.000 *g[4] +\
-              0.000 *g[5]
-    # rgb += [0.233,0.455,0.649] * G(Neg_r_2 , 0.0064)+\
-    #        [0.100,0.336,0.344] * G(Neg_r_2 , 0.0484)+\
-    #        [0.118,0.198,0.000] * G(Neg_r_2 , 0.1870)+\
-    #        [0.113,0.007,0.007] * G(Neg_r_2 , 0.5670)+\
-    #        [0.358,0.004,0.000] * G(Neg_r_2 , 1.9900)+\
-    #        [0.078,0.000,0.000] * G(Neg_r_2 , 7.4100)
-    return rgb
 
 
 r = np.arange(0, 2.5, 0.01)
@@ -127,7 +89,7 @@ r = np.arange(0, 2.5, 0.01)
 #                  + l[2] * gaussian(.91, x) \
 #                  + l[3] * gaussian(7.0, x)
 
-Rr = Cal(r,G2)
+Rr = R_origin(r)
 
 # RF = R2(r, [.07,.18,.21,.29]) * r
 print(R)

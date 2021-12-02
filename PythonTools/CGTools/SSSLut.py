@@ -4,7 +4,7 @@ from multipledispatch import dispatch
 
 import SumOfGaussians
 
-size = 128
+size = 64
 img = Image.new('RGB', (size, size))
 
 
@@ -68,16 +68,36 @@ def integrate_bottom(radius, accuracy=.1, use_sphere = False):
 
 def integrate(theta, thickness, accuracy=.1, use_sphere = False):
     if use_sphere:
-        up = integrate_up(theta, thickness, accuracy=accuracy, use_sphere=True)
-        bottom = integrate_bottom(thickness, accuracy=accuracy, use_sphere=True)
-        return [up[0] / bottom[0], up[1] / bottom[1], up[2] / bottom[2]]
+        delta_a = np.math.pi * accuracy
+        delta_b = 2 * np.math.pi * accuracy
+        a = - .5 * np.math.pi
+        total_weights = [0, 0, 0]
+        total_light = [0, 0, 0]
+        while a <= .5 * np.math.pi:
+            b = -np.math.pi
+            while b <= np.math.pi:
+                weight = SumOfGaussians.R(a, b, thickness)
+                total_weights += weight
+                total_light += np.multiply(SumOfGaussians.saturate(sample_light(theta, a, b)), weight)
+                b += delta_b
+            a += delta_a
+        return total_light / total_weights
     else:
-        up = integrate_up(theta, thickness, accuracy)
-        bottom = integrate_bottom(thickness, accuracy)
-        return [up[0] / bottom[0], up[1] / bottom[1], up[2] / bottom[2]]
-
-
-
+        delta_a = np.math.pi * accuracy
+        delta_b = 2 * np.math.pi * accuracy
+        total_weights = [0, 0, 0]
+        total_light = [0, 0, 0]
+        b = -np.math.pi
+        while b <= np.math.pi:
+            weight = SumOfGaussians.R(b, thickness)
+            total_weights += weight
+            total_light += np.multiply(SumOfGaussians.saturate(sample_light(theta, b)), weight)
+            b += delta_b
+        return [
+            total_light[0] / total_weights[0],
+            total_light[1] / total_weights[1],
+            total_light[2] / total_weights[2],
+        ]
 
 
 img_array = np.array(img)  # 把图像转成数组格式img = np.asarray(image)
