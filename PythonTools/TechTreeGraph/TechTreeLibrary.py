@@ -16,7 +16,7 @@ class TechNode(object):
         cost_gold_arr: 消耗黄金【最小，最大】
     """
 
-    def __init__(self, name, detail_arr, cost_time, cost_gold_arr):
+    def __init__(self, name, detail_arr, cost_time, cost_gold_arr,node_type):
         """
         :param name: 名称
         :param detail_arr: 效果详情
@@ -30,6 +30,7 @@ class TechNode(object):
         self.cost_time = cost_time
         self.detail_arr = detail_arr
         self.name = name
+        self.node_type = node_type
 
     def generate_node(self, graph):
         TechTreeHelper.get_tech_node(graph, self)
@@ -46,8 +47,8 @@ class TechTreeGraph(object):
         self.graph.attr(rankdir="LR",ranksep='1')
 
 
-    def add_node(self, name, detail_arr, cost_time, cost_gold_arr, former_nodes=[]):
-        node = TechNode(name,detail_arr,cost_time,cost_gold_arr)
+    def add_node(self, name, detail_arr, cost_time, cost_gold_arr, former_nodes=[],node_type = "ECO"):
+        node = TechNode(name,detail_arr,cost_time,cost_gold_arr,node_type)
         node.generate_node(self.graph)
         self.node_dict[node.id] = node
         for n in former_nodes:
@@ -85,11 +86,13 @@ class TechTreeHelper(object):
         :type tech_node: TechNode
         """
         TechTreeHelper.get_tech_node(graph, tech_node.id, tech_node.name, tech_node.detail_arr, tech_node.cost_time,
-                                    tech_node.cost_gold_arr)
+                                    tech_node.cost_gold_arr,tech_node.node_type)
+
+    color_dic = {"ECO": "#ffaa00", "MIL": "#228dff", "SCI": "#65d84b"}
 
     @staticmethod
-    @dispatch(Digraph, str, str, list, Number, list)
-    def get_tech_node(graph, id, name, detail_arr, cost_time, cost_gold_arr):
+    @dispatch(Digraph, str, str, list, Number, list, str)
+    def get_tech_node(graph, id, name, detail_arr, cost_time, cost_gold_arr,node_type):
         """
         :param graph:
         :param id:
@@ -99,7 +102,7 @@ class TechTreeHelper(object):
         :param cost_gold_arr:
         """
         label_str = name + "|" + "{<f0>" + str(cost_time) + "秒| <f1>" + str(cost_gold_arr) + " 黄金 }|" + TechTreeHelper.clean_label_str(("\l").join(detail_arr)) + "\l"
-        graph.node(id, nohtml(label_str), shape='record', fontname="SimSun")
+        graph.node(id, nohtml(label_str), shape='record', fontname="SimSun", style='filled', fillcolor = TechTreeHelper.color_dic[node_type])
 
 
     @staticmethod

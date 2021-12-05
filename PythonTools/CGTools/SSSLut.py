@@ -1,126 +1,162 @@
-from PIL import Image
+import math
+import threading
+
 import numpy as np
-from multipledispatch import dispatch
+from PIL import Image
+from numba import jit
+from tqdm import tqdm
 
-import SumOfGaussians
-
-size = 64
-img = Image.new('RGB', (size, size))
-
-
+import SSSLutLibrary
+@jit(nopython=True)
 def sample_light(angle, a=0, b=0):
     return np.cos(angle + a) * np.cos(b)
 
-
-def integrate_up(theta, radius, accuracy=.1, use_sphere = False):
-    if use_sphere:
-        delta_a = np.math.pi * accuracy
-        delta_b = 2 * np.math.pi * accuracy
-        a = - .5 * np.math.pi
-        result = [0, 0, 0]
-        while a <= .5 * np.math.pi:
-            b = -np.math.pi
-            while b <= np.math.pi:
-                result += np.multiply(SumOfGaussians.saturate(sample_light(theta, a, b)), SumOfGaussians.R(a, b, radius))
-                b += delta_b
-            a += delta_a
-        return result
-    else:
-        delta_b = 2 * np.math.pi * accuracy
-        result = [0, 0, 0]
-        b = -np.math.pi
-        while b <= np.math.pi:
-            result += np.multiply(SumOfGaussians.saturate(sample_light(theta, b)), SumOfGaussians.R(b,radius))
+@jit
+def sp_integrate(accuracy=.1, thickness=1, k=1, theta=0):
+    delta_a = np.pi * accuracy
+    delta_b = 2 * np.pi * accuracy
+    a = 0
+    total_weights = np.array([.0, .0, .0])
+    total_light = np.array([.0, .0, .0])
+    # 对球面积分
+    # 二重积分
+    while a <= np.pi:
+        b = -np.pi
+        while b <= np.pi:
+            sub_weights = np.array([.0, .0, .0])
+            sub_light = np.array([.0, .0, .0])
+            weight = SSSLutLibrary.R(a, b, thickness) * k
+            sub_weights += weight
+            light = SSSLutLibrary.saturate(sample_light(theta, a, b)) * weight
+            sub_light += light
             b += delta_b
-        return result
+        total_weights += sub_weights
+        total_light += sub_light
+        a += delta_a
+    return (total_light,total_weights)
 
+@jit
+def sp_ring(accuracy=.1, thickness=1, k=1, theta=0):
+    delta_b = 2 * np.pi * accuracy
+    total_weights = np.array([.0, .0, .0])
+    total_light = np.array([.0, .0, .0])
+    b = -np.pi
+    while b <= np.pi:
+        weight = SSSLutLibrary.R(a=b, r=thickness) * k
+        total_weights += weight
+        light = SSSLutLibrary.saturate(sample_light(theta, b)) * weight
+        total_light += light
+        b += delta_b
+    return (total_light,total_weights)
 
-
-def integrate_bottom(radius, accuracy=.1, use_sphere = False):
+# @nb.jit()
+@jit
+def integrate(theta, thickness, accuracy=.1, use_sphere=False, k=1):
     if use_sphere:
-        delta_a = np.math.pi * accuracy
-        delta_b = 2 * np.math.pi * accuracy
-        a = - .5 * np.math.pi
-        result = [0, 0, 0]
-        while a <= .5 * np.math.pi:
-            b = -np.math.pi
-            while b <= np.math.pi:
-                r = SumOfGaussians.R(a, b, radius)
-                result[0] += r[0]
-                result[1] += r[1]
-                result[2] += r[2]
-                b += delta_b
-            a += delta_a
-        return result
+        total_light , total_weights = sp_integrate(accuracy,thickness,k,theta)
+        rgb = total_light / total_weights
+        rgb = pow(rgb, 1 / 2.2)
+        # print(rgb)
+        # rgb = [saturate(c) for c in rgb]
+        return rgb
     else:
-        delta_b = 2 * np.math.pi * accuracy
-        result = [0, 0, 0]
-        b = -np.math.pi
-        while b <= np.math.pi:
-            r = SumOfGaussians.R(b, radius)
-            result[0] += r[0]
-            result[1] += r[1]
-            result[2] += r[2]
-            b += delta_b
-        return result
+        total_light, total_weights = sp_ring(accuracy, thickness, k, theta)
+        rgb = total_light / total_weights
+        rgb = np.power(rgb, 1 / 2.2)
+
+        return rgb
 
 
+# @cuda.jit
 
-def integrate(theta, thickness, accuracy=.1, use_sphere = False):
-    if use_sphere:
-        delta_a = np.math.pi * accuracy
-        delta_b = 2 * np.math.pi * accuracy
-        a = - .5 * np.math.pi
-        total_weights = [0, 0, 0]
-        total_light = [0, 0, 0]
-        while a <= .5 * np.math.pi:
-            b = -np.math.pi
-            while b <= np.math.pi:
-                weight = SumOfGaussians.R(a, b, thickness)
-                total_weights += weight
-                total_light += np.multiply(SumOfGaussians.saturate(sample_light(theta, a, b)), weight)
-                b += delta_b
-            a += delta_a
-        return total_light / total_weights
-    else:
-        delta_a = np.math.pi * accuracy
-        delta_b = 2 * np.math.pi * accuracy
-        total_weights = [0, 0, 0]
-        total_light = [0, 0, 0]
-        b = -np.math.pi
-        while b <= np.math.pi:
-            weight = SumOfGaussians.R(b, thickness)
-            total_weights += weight
-            total_light += np.multiply(SumOfGaussians.saturate(sample_light(theta, b)), weight)
-            b += delta_b
-        return [
-            total_light[0] / total_weights[0],
-            total_light[1] / total_weights[1],
-            total_light[2] / total_weights[2],
-        ]
+global indicator
+indicator = 0
+global total_indicator
+global pbar
+
+def process():
+    global indicator
+    indicator += 1
+    global total_indicator
+    global pbar
+    pbar.update()
+    return
 
 
-img_array = np.array(img)  # 把图像转成数组格式img = np.asarray(image)
-shape = img_array.shape
+# @cuda.jit
 
-height = shape[0]
-width = shape[1]
-dst = np.zeros((height, width, 3))
+def cal(p, size, accuracy=.1, use_sphere=False, max_r=1, cost=0):
+    x = p[4]
+    y = p[3]
+    uv_x = (x / size - .5) * 2
+    uv_y = 1 - (y / size)
+    col = integrate(np.math.acos(uv_x), 1 / (uv_y * max_r + .001) * 2, accuracy=accuracy, use_sphere=use_sphere) * (
+            1.0 - 2.0 * math.pi * cost)
+    col = [
+        SSSLutLibrary.saturate(col[0]),
+        SSSLutLibrary.saturate(col[1]),
+        SSSLutLibrary.saturate(col[2]),
+    ]
+    process()
+    return [int(col[0] * 255), int(col[1] * 255), int(col[2] * 255)]
 
-for h in range(0, height):
-    for w in range(0, width):
-        uv = [w / width - .5, h / height - .5]
-        col = integrate(np.math.acos(uv[0]), uv[1],accuracy=.1)
+@jit(nopython=True)
+def generate_uv_array(size):
+    a = np.zeros((size, size, 5))
+    for i in range(size):
+        for j in range(size):
+            a[i, j] = np.array([0, 0, 0, i, j])
+    return a.reshape((-1, 5))
 
-        # print(col)
-        dst[w, h] = [col[0] * 255, col[1] * 255, col[2] * 255]
-        # print(dst[w, h])
-        # reflectance = SumOfGaussians.R(d, SumOfGaussians.light_weights_tuples, SumOfGaussians.v)
-        # RR = SumOfGaussians.saturate(reflectance[0])
-        # RG = SumOfGaussians.saturate(reflectance[1])
-        # RB = SumOfGaussians.saturate(reflectance[2])
-        # dst[h,w] = [RR * 255,RG* 255,RB* 255]
 
-img2 = Image.fromarray(np.uint8(dst))
-img2.show(img2)
-img2.save("3.png", "png")
+def uv_array_to_rgb(a, size):
+    return a[:, 0:3].reshape((size, size, 3))
+
+def block_cal(input, rl, i, part_size, total_size, accuracy=.1, use_sphere=False, max_r=1, cost=0):
+    is_last = (i + 1) * part_size >= total_size * total_size
+    rl[i] = np.apply_along_axis(cal,
+                                1,
+                                input[part_size * i:] if is_last else input[part_size * i:part_size * (i + 1)],
+                                total_size,
+                                accuracy,
+                                use_sphere,
+                                max_r,
+                                cost)
+
+
+def generate_pre_integrated(sample_size=64, thread_count=3, accuracy=.1, use_sphere=False, max_r=1, cost=0,
+                            output_size=1024, output_name="LUT"):
+    size = sample_size
+    global total_indicator
+    total_indicator = size * size
+
+    dst = generate_uv_array(size)
+    part_size = math.ceil(size * size / thread_count)
+
+    r = [0] * thread_count
+    threads = []
+
+    global pbar
+    pbar = tqdm(total=total_indicator, ncols=100, unit="pixel")
+    pbar.set_description('Processing:')
+
+    for i in range(thread_count):
+        t = threading.Thread(target=block_cal, args=(dst, r, i, part_size, size, accuracy, use_sphere, max_r, cost))
+        threads.append(t)
+        t.start()
+
+    for t in threads:
+        t.join()
+
+    result = np.vstack((r[0], r[1]))
+    for i in range(2, thread_count):
+        result = np.vstack((result, r[i]))
+
+    img2 = Image.fromarray(np.uint8(uv_array_to_rgb(result, size)))
+    img2 = img2.resize((output_size, output_size))
+    img2.show(img2)
+    img2.save(output_name + ".png", "png")
+
+
+generate_pre_integrated(sample_size=32, thread_count=4, accuracy=.01, max_r=1, use_sphere=False,output_name="NEW_LUT2")
+

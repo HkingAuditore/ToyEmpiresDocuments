@@ -1,3 +1,37 @@
+##DiffusionProfile生成代码
+from PIL import Image,ImageDraw,ImageFont,ImageFilter
+from numpy import *
+import random
+import math
+
+def G1(Neg_r_2, v):
+    return math.exp(Neg_r_2 / v)
+
+def Cal(distance,G):
+    Neg_r_2 = -distance*distance
+    rgb = array([0.233,0.455,0.649]) * G(Neg_r_2 , 0.0064)+\
+          array([0.100,0.336,0.344]) * G(Neg_r_2 , 0.0484)+\
+          array([0.118,0.198,0.000]) * G(Neg_r_2 , 0.1870)+\
+          array([0.113,0.007,0.007]) * G(Neg_r_2 , 0.5670)+\
+          array([0.358,0.004,0.000]) * G(Neg_r_2 , 1.9900)+\
+          array([0.078,0.000,0.000]) * G(Neg_r_2 , 7.4100)
+    rgb = tuple(multiply(rgb,array([255,255,255])))
+    return (int(rgb[0]),int(rgb[1]),int(rgb[2]))
+
+width = 180
+height = 180
+image = Image.new('RGB',(width,height),(255,255,255))
+
+draw = ImageDraw.Draw(image)
+for x in range(width):
+    uvx = float(x)/float(width)
+    for y in range(height):
+        uvy = float(y)/float(height)
+        draw.point((x,y),fill = Cal(2.0*math.sqrt((uvx-0.5)**2+(uvy-0.5)**2),G1))
+
+image.save('diffusionProfile.png','PNG')
+
+
 from PIL import Image,ImageDraw,ImageFont,ImageFilter
 from numpy import *
 import time
@@ -46,21 +80,21 @@ def IntegrateDiffuseScatteringOnRing(uvx,Radius):
     while x <= math.pi:
         sampleAngle = theta + x
         sampleDist = abs(2.0 * Radius * math.sin(x*0.5))
-        # diffuse = max(math.cos(theta + x),0.0)
+        diffuse = max(math.cos(theta + x),0.0)
         weight = Cal(sampleDist,G2)
-        # totalLight += weight * diffuse
+        totalLight += weight * diffuse
         totalWeights += weight
         x += 0.1
     rgb = totalLight/totalWeights
-    rgb *= 255
-    # print(rgb)
-#ToneMapping部分
+
+##ToneMapping部分
     # rgb *= 32.0
     # rgb = Tonemap(rgb)
     # whiteScale = 1.0/Tonemap(array([W,W,W]))
     # rgb *= whiteScale
     # rgb = pow(rgb, 1/2.2)
-    # rgb = multiply(rgb,array([255,255,255]))
+    rgb = multiply(rgb,array([255,255,255]))
+    # print(rgb)
     return (int(rgb[0]),int(rgb[1]),int(rgb[2]))
 
 
@@ -75,9 +109,9 @@ for y in range(height):
     for x in range(width):
         uvx = float(x)/float(width)
         RGB = IntegrateDiffuseScatteringOnRing(uvx,Radius)
+        # print(RGB)
         draw.point((x,height - y -1),fill = RGB)
 image.filter = ImageFilter.BLUR
-image.show()
 image.save('color.png','PNG')
 time_end=time.time()
 print('totally cost',time_end-time_start)

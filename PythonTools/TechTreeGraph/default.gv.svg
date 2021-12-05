@@ -12,7 +12,7 @@
 <!-- 手推车 -->
 <g id="node1" class="node">
 <title>手推车</title>
-<polygon fill="none" stroke="black" points="0,-118.5 0,-202.5 158,-202.5 158,-118.5 0,-118.5"/>
+<polygon fill="#ffaa00" stroke="black" points="0,-118.5 0,-202.5 158,-202.5 158,-118.5 0,-118.5"/>
 <text text-anchor="middle" x="79" y="-187.3" font-family="SimSun" font-size="14.00">手推车</text>
 <polyline fill="none" stroke="black" points="0,-179.5 158,-179.5 "/>
 <text text-anchor="middle" x="23" y="-164.3" font-family="SimSun" font-size="14.00">20秒</text>
@@ -25,7 +25,7 @@
 <!-- 水利 -->
 <g id="node2" class="node">
 <title>水利</title>
-<polygon fill="none" stroke="black" points="230,-233.5 230,-317.5 388,-317.5 388,-233.5 230,-233.5"/>
+<polygon fill="#ffaa00" stroke="black" points="230,-233.5 230,-317.5 388,-317.5 388,-233.5 230,-233.5"/>
 <text text-anchor="middle" x="309" y="-302.3" font-family="SimSun" font-size="14.00">水利</text>
 <polyline fill="none" stroke="black" points="230,-294.5 388,-294.5 "/>
 <text text-anchor="middle" x="253" y="-279.3" font-family="SimSun" font-size="14.00">20秒</text>
@@ -44,7 +44,7 @@
 <!-- 采矿 -->
 <g id="node3" class="node">
 <title>采矿</title>
-<polygon fill="none" stroke="black" points="230,-4.5 230,-88.5 388,-88.5 388,-4.5 230,-4.5"/>
+<polygon fill="#ffaa00" stroke="black" points="230,-4.5 230,-88.5 388,-88.5 388,-4.5 230,-4.5"/>
 <text text-anchor="middle" x="309" y="-73.3" font-family="SimSun" font-size="14.00">采矿</text>
 <polyline fill="none" stroke="black" points="230,-65.5 388,-65.5 "/>
 <text text-anchor="middle" x="253" y="-50.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -63,7 +63,7 @@
 <!-- 行政机构 -->
 <g id="node4" class="node">
 <title>行政机构</title>
-<polygon fill="none" stroke="black" points="230,-111 230,-210 388,-210 388,-111 230,-111"/>
+<polygon fill="#ffaa00" stroke="black" points="230,-111 230,-210 388,-210 388,-111 230,-111"/>
 <text text-anchor="middle" x="309" y="-194.8" font-family="SimSun" font-size="14.00">行政机构</text>
 <polyline fill="none" stroke="black" points="230,-187 388,-187 "/>
 <text text-anchor="middle" x="253" y="-171.8" font-family="SimSun" font-size="14.00">10秒</text>
@@ -83,7 +83,7 @@
 <!-- 农学 -->
 <g id="node5" class="node">
 <title>农学</title>
-<polygon fill="none" stroke="black" points="460,-236.5 460,-320.5 618,-320.5 618,-236.5 460,-236.5"/>
+<polygon fill="#ffaa00" stroke="black" points="460,-236.5 460,-320.5 618,-320.5 618,-236.5 460,-236.5"/>
 <text text-anchor="middle" x="539" y="-305.3" font-family="SimSun" font-size="14.00">农学</text>
 <polyline fill="none" stroke="black" points="460,-297.5 618,-297.5 "/>
 <text text-anchor="middle" x="483" y="-282.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -102,7 +102,7 @@
 <!-- 矿井勘探 -->
 <g id="node7" class="node">
 <title>矿井勘探</title>
-<polygon fill="none" stroke="black" points="460,-0.5 460,-84.5 618,-84.5 618,-0.5 460,-0.5"/>
+<polygon fill="#ffaa00" stroke="black" points="460,-0.5 460,-84.5 618,-84.5 618,-0.5 460,-0.5"/>
 <text text-anchor="middle" x="539" y="-69.3" font-family="SimSun" font-size="14.00">矿井勘探</text>
 <polyline fill="none" stroke="black" points="460,-61.5 618,-61.5 "/>
 <text text-anchor="middle" x="483" y="-46.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -133,7 +133,7 @@
 <!-- 教育 -->
 <g id="node9" class="node">
 <title>教育</title>
-<polygon fill="none" stroke="black" points="460,-103.5 460,-217.5 618,-217.5 618,-103.5 460,-103.5"/>
+<polygon fill="#ffaa00" stroke="black" points="460,-103.5 460,-217.5 618,-217.5 618,-103.5 460,-103.5"/>
 <text text-anchor="middle" x="539" y="-202.3" font-family="SimSun" font-size="14.00">教育</text>
 <polyline fill="none" stroke="black" points="460,-194.5 618,-194.5 "/>
 <text text-anchor="middle" x="483" y="-179.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -154,7 +154,7 @@
 <!-- 历法 -->
 <g id="node6" class="node">
 <title>历法</title>
-<polygon fill="none" stroke="black" points="690,-244 690,-313 848,-313 848,-244 690,-244"/>
+<polygon fill="#ffaa00" stroke="black" points="690,-244 690,-313 848,-313 848,-244 690,-244"/>
 <text text-anchor="middle" x="769" y="-297.8" font-family="SimSun" font-size="14.00">历法</text>
 <polyline fill="none" stroke="black" points="690,-290 848,-290 "/>
 <text text-anchor="middle" x="713" y="-274.8" font-family="SimSun" font-size="14.00">10秒</text>
@@ -172,7 +172,7 @@
 <!-- 化学 -->
 <g id="node8" class="node">
 <title>化学</title>
-<polygon fill="none" stroke="black" points="690,-8 690,-77 848,-77 848,-8 690,-8"/>
+<polygon fill="#ffaa00" stroke="black" points="690,-8 690,-77 848,-77 848,-8 690,-8"/>
 <text text-anchor="middle" x="769" y="-61.8" font-family="SimSun" font-size="14.00">化学</text>
 <polyline fill="none" stroke="black" points="690,-54 848,-54 "/>
 <text text-anchor="middle" x="713" y="-38.8" font-family="SimSun" font-size="14.00">10秒</text>
@@ -190,7 +190,7 @@
 <!-- 经济 -->
 <g id="node10" class="node">
 <title>经济</title>
-<polygon fill="none" stroke="black" points="690,-103.5 690,-217.5 848,-217.5 848,-103.5 690,-103.5"/>
+<polygon fill="#ffaa00" stroke="black" points="690,-103.5 690,-217.5 848,-217.5 848,-103.5 690,-103.5"/>
 <text text-anchor="middle" x="769" y="-202.3" font-family="SimSun" font-size="14.00">经济</text>
 <polyline fill="none" stroke="black" points="690,-194.5 848,-194.5 "/>
 <text text-anchor="middle" x="713" y="-179.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -211,7 +211,7 @@
 <!-- 工程技术 -->
 <g id="node11" class="node">
 <title>工程技术</title>
-<polygon fill="none" stroke="black" points="920,-170.5 920,-284.5 1078,-284.5 1078,-170.5 920,-170.5"/>
+<polygon fill="#ffaa00" stroke="black" points="920,-170.5 920,-284.5 1078,-284.5 1078,-170.5 920,-170.5"/>
 <text text-anchor="middle" x="999" y="-269.3" font-family="SimSun" font-size="14.00">工程技术</text>
 <polyline fill="none" stroke="black" points="920,-261.5 1078,-261.5 "/>
 <text text-anchor="middle" x="943" y="-246.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -232,7 +232,7 @@
 <!-- 交通运输 -->
 <g id="node12" class="node">
 <title>交通运输</title>
-<polygon fill="none" stroke="black" points="920,-37.5 920,-151.5 1078,-151.5 1078,-37.5 920,-37.5"/>
+<polygon fill="#ffaa00" stroke="black" points="920,-37.5 920,-151.5 1078,-151.5 1078,-37.5 920,-37.5"/>
 <text text-anchor="middle" x="999" y="-136.3" font-family="SimSun" font-size="14.00">交通运输</text>
 <polyline fill="none" stroke="black" points="920,-128.5 1078,-128.5 "/>
 <text text-anchor="middle" x="943" y="-113.3" font-family="SimSun" font-size="14.00">10秒</text>
@@ -253,7 +253,7 @@
 <!-- 军事训练 -->
 <g id="node13" class="node">
 <title>军事训练</title>
-<polygon fill="none" stroke="black" points="0,-391 0,-490 158,-490 158,-391 0,-391"/>
+<polygon fill="#228dff" stroke="black" points="0,-391 0,-490 158,-490 158,-391 0,-391"/>
 <text text-anchor="middle" x="79" y="-474.8" font-family="SimSun" font-size="14.00">军事训练</text>
 <polyline fill="none" stroke="black" points="0,-467 158,-467 "/>
 <text text-anchor="middle" x="23" y="-451.8" font-family="SimSun" font-size="14.00">20秒</text>
@@ -267,7 +267,7 @@
 <!-- 战术 -->
 <g id="node14" class="node">
 <title>战术</title>
-<polygon fill="none" stroke="black" points="230,-458 230,-527 388,-527 388,-458 230,-458"/>
+<polygon fill="#228dff" stroke="black" points="230,-458 230,-527 388,-527 388,-458 230,-458"/>
 <text text-anchor="middle" x="309" y="-511.8" font-family="SimSun" font-size="14.00">战术</text>
 <polyline fill="none" stroke="black" points="230,-504 388,-504 "/>
 <text text-anchor="middle" x="253" y="-488.8" font-family="SimSun" font-size="14.00">20秒</text>
@@ -285,7 +285,7 @@
 <!-- 军功制 -->
 <g id="node21" class="node">
 <title>军功制</title>
-<polygon fill="none" stroke="black" points="230,-340 230,-439 388,-439 388,-340 230,-340"/>
+<polygon fill="#228dff" stroke="black" points="230,-340 230,-439 388,-439 388,-340 230,-340"/>
 <text text-anchor="middle" x="309" y="-423.8" font-family="SimSun" font-size="14.00">军功制</text>
 <polyline fill="none" stroke="black" points="230,-416 388,-416 "/>
 <text text-anchor="middle" x="253" y="-400.8" font-family="SimSun" font-size="14.00">30秒</text>
@@ -305,7 +305,7 @@
 <!-- 马镫 -->
 <g id="node15" class="node">
 <title>马镫</title>
-<polygon fill="none" stroke="black" points="460,-546 460,-615 618,-615 618,-546 460,-546"/>
+<polygon fill="#228dff" stroke="black" points="460,-546 460,-615 618,-615 618,-546 460,-546"/>
 <text text-anchor="middle" x="539" y="-599.8" font-family="SimSun" font-size="14.00">马镫</text>
 <polyline fill="none" stroke="black" points="460,-592 618,-592 "/>
 <text text-anchor="middle" x="483" y="-576.8" font-family="SimSun" font-size="14.00">20秒</text>
@@ -323,7 +323,7 @@
 <!-- 医药 -->
 <g id="node16" class="node">
 <title>医药</title>
-<polygon fill="none" stroke="black" points="460,-458 460,-527 618,-527 618,-458 460,-458"/>
+<polygon fill="#228dff" stroke="black" points="460,-458 460,-527 618,-527 618,-458 460,-458"/>
 <text text-anchor="middle" x="539" y="-511.8" font-family="SimSun" font-size="14.00">医药</text>
 <polyline fill="none" stroke="black" points="460,-504 618,-504 "/>
 <text text-anchor="middle" x="483" y="-488.8" font-family="SimSun" font-size="14.00">20秒</text>
@@ -341,7 +341,7 @@
 <!-- 复合弓 -->
 <g id="node22" class="node">
 <title>复合弓</title>
-<polygon fill="none" stroke="black" points="460,-340 460,-439 618,-439 618,-340 460,-340"/>
+<polygon fill="#228dff" stroke="black" points="460,-340 460,-439 618,-439 618,-340 460,-340"/>
 <text text-anchor="middle" x="539" y="-423.8" font-family="SimSun" font-size="14.00">复合弓</text>
 <polyline fill="none" stroke="black" points="460,-416 618,-416 "/>
 <text text-anchor="middle" x="483" y="-400.8" font-family="SimSun" font-size="14.00">30秒</text>
@@ -361,7 +361,7 @@
 <!-- 军事工程 -->
 <g id="node17" class="node">
 <title>军事工程</title>
-<polygon fill="none" stroke="black" points="690,-593.5 690,-677.5 848,-677.5 848,-593.5 690,-593.5"/>
+<polygon fill="#228dff" stroke="black" points="690,-593.5 690,-677.5 848,-677.5 848,-593.5 690,-593.5"/>
 <text text-anchor="middle" x="769" y="-662.3" font-family="SimSun" font-size="14.00">军事工程</text>
 <polyline fill="none" stroke="black" points="690,-654.5 848,-654.5 "/>
 <text text-anchor="middle" x="713" y="-639.3" font-family="SimSun" font-size="14.00">30秒</text>
@@ -380,7 +380,7 @@
 <!-- 马匹育种 -->
 <g id="node23" class="node">
 <title>马匹育种</title>
-<polygon fill="none" stroke="black" points="690,-475 690,-574 848,-574 848,-475 690,-475"/>
+<polygon fill="#228dff" stroke="black" points="690,-475 690,-574 848,-574 848,-475 690,-475"/>
 <text text-anchor="middle" x="769" y="-558.8" font-family="SimSun" font-size="14.00">马匹育种</text>
 <polyline fill="none" stroke="black" points="690,-551 848,-551 "/>
 <text text-anchor="middle" x="713" y="-535.8" font-family="SimSun" font-size="14.00">30秒</text>
@@ -400,7 +400,7 @@
 <!-- 攻城器械 -->
 <g id="node18" class="node">
 <title>攻城器械</title>
-<polygon fill="none" stroke="black" points="920,-593.5 920,-677.5 1078,-677.5 1078,-593.5 920,-593.5"/>
+<polygon fill="#228dff" stroke="black" points="920,-593.5 920,-677.5 1078,-677.5 1078,-593.5 920,-593.5"/>
 <text text-anchor="middle" x="999" y="-662.3" font-family="SimSun" font-size="14.00">攻城器械</text>
 <polyline fill="none" stroke="black" points="920,-654.5 1078,-654.5 "/>
 <text text-anchor="middle" x="943" y="-639.3" font-family="SimSun" font-size="14.00">30秒</text>
@@ -419,7 +419,7 @@
 <!-- 火药 -->
 <g id="node19" class="node">
 <title>火药</title>
-<polygon fill="none" stroke="black" points="1150.5,-652 1150.5,-721 1308.5,-721 1308.5,-652 1150.5,-652"/>
+<polygon fill="#228dff" stroke="black" points="1150.5,-652 1150.5,-721 1308.5,-721 1308.5,-652 1150.5,-652"/>
 <text text-anchor="middle" x="1229.5" y="-705.8" font-family="SimSun" font-size="14.00">火药</text>
 <polyline fill="none" stroke="black" points="1150.5,-698 1308.5,-698 "/>
 <text text-anchor="middle" x="1173.5" y="-682.8" font-family="SimSun" font-size="14.00">20秒</text>
@@ -437,7 +437,7 @@
 <!-- 军事技术 -->
 <g id="node24" class="node">
 <title>军事技术</title>
-<polygon fill="none" stroke="black" points="1150,-534 1150,-633 1309,-633 1309,-534 1150,-534"/>
+<polygon fill="#228dff" stroke="black" points="1150,-534 1150,-633 1309,-633 1309,-534 1150,-534"/>
 <text text-anchor="middle" x="1229.5" y="-617.8" font-family="SimSun" font-size="14.00">军事技术</text>
 <polyline fill="none" stroke="black" points="1150,-610 1309,-610 "/>
 <text text-anchor="middle" x="1173" y="-594.8" font-family="SimSun" font-size="14.00">30秒</text>
@@ -457,7 +457,7 @@
 <!-- 火炮 -->
 <g id="node20" class="node">
 <title>火炮</title>
-<polygon fill="none" stroke="black" points="1381,-652 1381,-721 1539,-721 1539,-652 1381,-652"/>
+<polygon fill="#228dff" stroke="black" points="1381,-652 1381,-721 1539,-721 1539,-652 1381,-652"/>
 <text text-anchor="middle" x="1460" y="-705.8" font-family="SimSun" font-size="14.00">火炮</text>
 <polyline fill="none" stroke="black" points="1381,-698 1539,-698 "/>
 <text text-anchor="middle" x="1404" y="-682.8" font-family="SimSun" font-size="14.00">20秒</text>
@@ -475,7 +475,7 @@
 <!-- 手工业 -->
 <g id="node25" class="node">
 <title>手工业</title>
-<polygon fill="none" stroke="black" points="0,-670 0,-769 158,-769 158,-670 0,-670"/>
+<polygon fill="#65d84b" stroke="black" points="0,-670 0,-769 158,-769 158,-670 0,-670"/>
 <text text-anchor="middle" x="79" y="-753.8" font-family="SimSun" font-size="14.00">手工业</text>
 <polyline fill="none" stroke="black" points="0,-746 158,-746 "/>
 <text text-anchor="middle" x="23" y="-730.8" font-family="SimSun" font-size="14.00">30秒</text>
@@ -489,7 +489,7 @@
 <!-- 铸造 -->
 <g id="node26" class="node">
 <title>铸造</title>
-<polygon fill="none" stroke="black" points="230,-729.5 230,-813.5 388,-813.5 388,-729.5 230,-729.5"/>
+<polygon fill="#65d84b" stroke="black" points="230,-729.5 230,-813.5 388,-813.5 388,-729.5 230,-729.5"/>
 <text text-anchor="middle" x="309" y="-798.3" font-family="SimSun" font-size="14.00">铸造</text>
 <polyline fill="none" stroke="black" points="230,-790.5 388,-790.5 "/>
 <text text-anchor="middle" x="253" y="-775.3" font-family="SimSun" font-size="14.00">30秒</text>
@@ -508,7 +508,7 @@
 <!-- 锁子甲 -->
 <g id="node28" class="node">
 <title>锁子甲</title>
-<polygon fill="none" stroke="black" points="230,-626.5 230,-710.5 388,-710.5 388,-626.5 230,-626.5"/>
+<polygon fill="#65d84b" stroke="black" points="230,-626.5 230,-710.5 388,-710.5 388,-626.5 230,-626.5"/>
 <text text-anchor="middle" x="309" y="-695.3" font-family="SimSun" font-size="14.00">锁子甲</text>
 <polyline fill="none" stroke="black" points="230,-687.5 388,-687.5 "/>
 <text text-anchor="middle" x="253" y="-672.3" font-family="SimSun" font-size="14.00">30秒</text>
@@ -527,7 +527,7 @@
 <!-- 冶金 -->
 <g id="node27" class="node">
 <title>冶金</title>
-<polygon fill="none" stroke="black" points="460,-737 460,-806 618,-806 618,-737 460,-737"/>
+<polygon fill="#65d84b" stroke="black" points="460,-737 460,-806 618,-806 618,-737 460,-737"/>
 <text text-anchor="middle" x="539" y="-790.8" font-family="SimSun" font-size="14.00">冶金</text>
 <polyline fill="none" stroke="black" points="460,-783 618,-783 "/>
 <text text-anchor="middle" x="483" y="-767.8" font-family="SimSun" font-size="14.00">30秒</text>
@@ -545,7 +545,7 @@
 <!-- 板甲 -->
 <g id="node29" class="node">
 <title>板甲</title>
-<polygon fill="none" stroke="black" points="460,-634 460,-703 618,-703 618,-634 460,-634"/>
+<polygon fill="#65d84b" stroke="black" points="460,-634 460,-703 618,-703 618,-634 460,-634"/>
 <text text-anchor="middle" x="539" y="-687.8" font-family="SimSun" font-size="14.00">板甲</text>
 <polyline fill="none" stroke="black" points="460,-680 618,-680 "/>
 <text text-anchor="middle" x="483" y="-664.8" font-family="SimSun" font-size="14.00">30秒</text>
