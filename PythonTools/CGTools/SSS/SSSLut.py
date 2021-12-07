@@ -1,18 +1,19 @@
 import math
 import threading
-
 import numpy as np
 from PIL import Image
 from numba import jit
 from tqdm import tqdm
 
 import SSSLutLibrary
+
+
 @jit(nopython=True)
 def sample_light(angle, a=0, b=0):
     return np.cos(angle + a) * np.cos(b)
 
-@jit
-def sp_integrate(accuracy=.1, thickness=1, k=1, theta=0):
+@jit(nopython=True)
+def sp_integrate(accuracy=.1, thickness=1.0, k=1.0, theta=0.0):
     delta_a = np.pi * accuracy
     delta_b = 2 * np.pi * accuracy
     a = 0
@@ -35,8 +36,8 @@ def sp_integrate(accuracy=.1, thickness=1, k=1, theta=0):
         a += delta_a
     return (total_light,total_weights)
 
-@jit
-def sp_ring(accuracy=.1, thickness=1, k=1, theta=0):
+@jit(nopython=True)
+def ring_integrate(accuracy=.1, thickness=1.0, k=1.0, theta=0.0):
     delta_b = 2 * np.pi * accuracy
     total_weights = np.array([.0, .0, .0])
     total_light = np.array([.0, .0, .0])
@@ -50,17 +51,17 @@ def sp_ring(accuracy=.1, thickness=1, k=1, theta=0):
     return (total_light,total_weights)
 
 # @nb.jit()
-@jit
-def integrate(theta, thickness, accuracy=.1, use_sphere=False, k=1):
+@jit(nopython=True)
+def integrate(theta=0.0, thickness=1.0, accuracy=.1, use_sphere=False, k=1.0):
     if use_sphere:
-        total_light , total_weights = sp_integrate(accuracy,thickness,k,theta)
+        total_light, total_weights = sp_integrate(accuracy,thickness,k,theta)
         rgb = total_light / total_weights
-        rgb = pow(rgb, 1 / 2.2)
+        rgb = np.power(rgb, 1 / 2.2)
         # print(rgb)
         # rgb = [saturate(c) for c in rgb]
         return rgb
     else:
-        total_light, total_weights = sp_ring(accuracy, thickness, k, theta)
+        total_light, total_weights = ring_integrate(accuracy, thickness, k, theta)
         rgb = total_light / total_weights
         rgb = np.power(rgb, 1 / 2.2)
 
@@ -74,6 +75,7 @@ indicator = 0
 global total_indicator
 global pbar
 
+
 def process():
     global indicator
     indicator += 1
@@ -84,7 +86,6 @@ def process():
 
 
 # @cuda.jit
-
 def cal(p, size, accuracy=.1, use_sphere=False, max_r=1, cost=0):
     x = p[4]
     y = p[3]
@@ -124,7 +125,7 @@ def block_cal(input, rl, i, part_size, total_size, accuracy=.1, use_sphere=False
                                 cost)
 
 
-def generate_pre_integrated(sample_size=64, thread_count=3, accuracy=.1, use_sphere=False, max_r=1, cost=0,
+def generate_pre_integrated(sample_size=64, thread_count=3, accuracy=.1, use_sphere=False, max_r=1.0, cost=0,
                             output_size=1024, output_name="LUT"):
     size = sample_size
     global total_indicator
@@ -148,15 +149,18 @@ def generate_pre_integrated(sample_size=64, thread_count=3, accuracy=.1, use_sph
     for t in threads:
         t.join()
 
+
     result = np.vstack((r[0], r[1]))
     for i in range(2, thread_count):
         result = np.vstack((result, r[i]))
 
-    img2 = Image.fromarray(np.uint8(uv_array_to_rgb(result, size)))
-    img2 = img2.resize((output_size, output_size))
-    img2.show(img2)
-    img2.save(output_name + ".png", "png")
+    r = uv_array_to_rgb(result, size)
+    print(r.shape)
+    img = Image.fromarray(np.uint8(r))
+    img = img.resize((output_size, output_size))
+    img.show()
+    img.save(output_name + ".png", "png")
 
 
-generate_pre_integrated(sample_size=32, thread_count=4, accuracy=.01, max_r=1, use_sphere=False,output_name="NEW_LUT2")
+generate_pre_integrated(sample_size=256, thread_count=16, accuracy=.01, max_r=1.0, use_sphere=False,output_name="NEW_LUT3")
 
