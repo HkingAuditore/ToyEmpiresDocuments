@@ -49,8 +49,8 @@ def R_origin(d=.0):
     ])
     s = np.zeros(3)
     # 这里可以手动加强散射色彩的强度
-    p = 5
-    k = 10000
+    p = 6
+    k = 1
     for i, t in enumerate(light_weights_tuples):
         v = np.array(list(t))
         v = np.power(v * k, p)
@@ -115,8 +115,6 @@ def ring_integrate(accuracy=.1, thickness=1.0, k=1.0, theta=0.0, cost=.0):
         total_light += light * weight * delta_x
         total_cost += light * delta_x
         x += delta_x
-
-
     return (total_light, total_weights, cost * total_cost)
 
 
@@ -233,5 +231,5 @@ def generate_pre_integrated(sample_size=64, thread_count=3, accuracy=.1, use_sph
 
 # 图片的一般参数在这里改
 # 如果想让烘出来的LUT色彩更明亮，可以进到R_origin方法里改物理参数
-generate_pre_integrated(sample_size=64, thread_count=16, accuracy=.001, max_r=1.0, cost=-0.001, use_sphere=False,
+generate_pre_integrated(sample_size=32, thread_count=16, accuracy=.001, max_r=1.0, cost=-0.005, use_sphere=False,
                         output_name="CPU_LUT")
