@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<Policy PID="P2000" Type="2" Occupancy="4">
+		<Name>军团战术</Name>
+		<Content>超过三名士兵聚集时，每位聚集的士兵攻击力+30%。</Content>
+	</Policy>
+	<Policy PID="P2001" Type="2" Occupancy="4">
+		<Name>协同战术</Name>
+		<Content>若某一局部范围内存在本方三种及以上不同兵种的士兵，则范围内的士兵攻击力+20%，防御力+20%。</Content>
+	</Policy>
+	<Policy PID="P1000" Type="1" Occupancy="4">
+		<Name>理性主义</Name>
+		<Content>购买科技免费，但科技研发速度-50%。</Content>
+	</Policy>
+	<Policy PID="P1001" Type="1" Occupancy="4">
+		<Name>官僚体系</Name>
+		<Content>政策冷却时间-50%， 所有单位生产力+100%，但维护费用+50%。</Content>
+	</Policy>
+	<Policy PID="P1002" Type="1" Occupancy="4">
+		<Name>铸币权</Name>
+		<Content>场上士兵及工人每25秒产生1黄金。</Content>
+	</Policy>
+	<Policy PID="P2002" Type="2" Occupancy="3">
+		<Name>扫荡</Name>
+		<Content>骑兵单位每造成50点伤害，可获得1黄金。</Content>
+	</Policy>
+	<Policy PID="P1003" Type="1" Occupancy="3">
+		<Name>封建制度</Name>
+		<Content>农场在每次采集中额外生产2食物，但士兵的生产速度-20%。</Content>
+	</Policy>
+	<Policy PID="P1004" Type="1" Occupancy="3">
+		<Name>中央集权</Name>
+		<Content>士兵生产速度+20%，建筑生产速度+15%，但单位造价+10%，建筑造价+10%。</Content>
+	</Policy>
+	<Policy PID="P1005" Type="1" Occupancy="3">
+		<Name>政教合一</Name>
+		<Content>士兵造价-10%，黄金采集速度+10%，但科技研发速度-10%，政策冷却时间+10%。</Content>
+	</Policy>
+	<Policy PID="P2003" Type="2" Occupancy="2">
+		<Name>勤王</Name>
+		<Content>士兵在本方基地到战场1/31/3的区间内攻击力+30%。</Content>
+	</Policy>
+	<Policy PID="P2004" Type="2" Occupancy="3">
+		<Name>军事后勤</Name>
+		<Content>士兵在本方基地到战场中线的区间内不消耗补给。</Content>
+	</Policy>
+	<Policy PID="P1006" Type="1" Occupancy="3">
+		<Name>人文主义</Name>
+		<Content>士兵生产速度+100%，士兵单位预备役上限+3，但攻击力-40%，防御力-20%。</Content>
+	</Policy>
+	<Policy PID="P1007" Type="1" Occupancy="3">
+		<Name>宗族观念</Name>
+		<Content>工人生产速度+100%，工人预备役上限+5，但士兵造价+50%。</Content>
+	</Policy>
+	<Policy PID="P1008" Type="1" Occupancy="3">
+		<Name>殖民</Name>
+		<Content>若本方研发科技数量大于对方，则单位生产速度+20%，建筑建造速度+20%。</Content>
+	</Policy>
+	<Policy PID="P1009" Type="1" Occupancy="2">
+		<Name>对外贸易</Name>
+		<Content>资源兑换损耗-10%。</Content>
+	</Policy>
+	<Policy PID="P1010" Type="1" Occupancy="1">
+		<Name>地方治理</Name>
+		<Content>每位采集食物的工人能提供1生产力。</Content>
+	</Policy>
+	<Policy PID="P1011" Type="1" Occupancy="2">
+		<Name>什一税</Name>
+		<Content>场上工人每30秒产生1黄金。</Content>
+	</Policy>
+	<Policy PID="P1012" Type="1" Occupancy="1">
+		<Name>君权神授</Name>
+		<Content>修改政策的冷却时间-20%。</Content>
+	</Policy>
+	<Policy PID="P2005" Type="2" Occupancy="1">
+		<Name>军事纪律</Name>
+		<Content>士兵防御力+10%。</Content>
+	</Policy>
+	<Policy PID="P2006" Type="2" Occupancy="1">
+		<Name>尚武精神</Name>
+		<Content>士兵攻击力+10%。</Content>
+	</Policy>
+	<Policy PID="P1013" Type="1" Occupancy="1">
+		<Name>忠君思想</Name>
+		<Content>本方工人死亡时，可获得其携带资源的一半。</Content>
+	</Policy>
+	<Policy PID="P2007" Type="2" Occupancy="1">
+		<Name>民兵组织</Name>
+		<Content>步兵类单位的预备役上限+2。</Content>
+	</Policy>
+	<Policy PID="P2008" Type="2" Occupancy="1">
+		<Name>征召</Name>
+		<Content>士兵生产速度+10%。</Content>
+	</Policy>
+	<Policy PID="P1014" Type="1" Occupancy="1">
+		<Name>徭役</Name>
+		<Content>工人生产速度+10%。</Content>
+	</Policy>
+	<Policy PID="P1015" Type="1" Occupancy="1">
+		<Name>经验主义</Name>
+		<Content>科技研发速度+10%。</Content>
+	</Policy>
+	<Policy PID="P1016" Type="1" Occupancy="1">
+		<Name>小农经济</Name>
+		<Content>食物采集速度+10%。</Content>
+	</Policy>
+	<Policy PID="P1017" Type="1" Occupancy="1">
+		<Name>官营矿业</Name>
+		<Content>黄金采集速度+5%。</Content>
+	</Policy>
+</root>

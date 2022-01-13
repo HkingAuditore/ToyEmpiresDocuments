@@ -17,17 +17,16 @@ g.add_node("经济", ["提高工人人口上限","提高军事人口上限","提
 g.add_node("工程技术", ["提高建筑速度","提高单位生产力","提高工人人口上限","提高军事人口上限"], 10, [10, 20],former_nodes=["经济"], node_type="ECO")
 g.add_node("交通运输", ["提高工人人口上限","提高军事人口上限","提高单位生产力","+>【补给站】"], 10, [10, 20],former_nodes=["经济"], node_type="ECO")
 
-g.add_node("军事训练", ["X>【民兵】", "+>【剑士】", "+>【长矛兵】"], 20, [10, 20], node_type="MIL")
+g.add_node("军事训练", ["X>【民兵】", "+>【刀剑手】"], 20, [10, 20], node_type="MIL")
 g.add_node("战术", ["+>【弓箭手】"], 20, [10, 20],former_nodes=["军事训练"], node_type="MIL")
-g.add_node("马镫", ["+>【骑手】"], 20, [10, 20],former_nodes=["战术"], node_type="MIL")
-g.add_node("医药", ["+>【军医】"], 20, [10, 20], former_nodes=["战术"], node_type="MIL")
+g.add_node("马镫", ["+>【骑兵】"], 20, [10, 20],former_nodes=["战术"], node_type="MIL")
 g.add_node("军事工程", ["+>【拒马】"], 30, [10, 20], former_nodes=["马镫"], node_type="MIL")
-g.add_node("攻城器械", ["+>【冲车】","+>【投石机】"], 30, [10, 20], former_nodes=["军事工程"], node_type="MIL")
+g.add_node("攻城器械", ["+>【冲车】"], 30, [10, 20], former_nodes=["军事工程"], node_type="MIL")
 g.add_node("火药", ["+>【火枪手】"], 20, [10, 20], former_nodes=["攻城器械"], node_type="MIL")
 g.add_node("火炮", ["+>【火炮】"], 20, [10, 20], former_nodes=["火药"], node_type="MIL")
 
 
-g.add_node("军功制", ["提高步兵攻击力","提高步兵防御力","+>【兵营】"], 30, [10, 20], former_nodes=["军事训练"], node_type="MIL")
+g.add_node("常备军", ["提高步兵攻击力","提高步兵防御力","+>【兵营】"], 30, [10, 20], former_nodes=["军事训练"], node_type="MIL")
 g.add_node("复合弓", ["提高远程单位攻击力","提高射击距离","+>【靶场】","+>【驻防点】"], 30, [10, 20], former_nodes=["战术"], node_type="MIL")
 g.add_node("马匹育种", ["提高骑兵速度","降低骑兵价格","+>【马厩】"], 30, [10, 20], former_nodes=["马镫"], node_type="MIL")
 g.add_node("军事技术", ["提高攻城器械生产速度","降低攻城器械价格","+>【兵工厂】"], 30, [10, 20], former_nodes=["攻城器械"], node_type="MIL")
