@@ -272,7 +272,7 @@ $$N_{工人总数}=N_{空闲工人数量}+N_{工作工人数量}$$
 	"行政机构":e -> "矿井勘探":w [len=2.00]
 	"化学" [label="0025.化学|{<f0>10秒| <f1>[10, 20] 黄金 }|提高矿物采集量\l" fillcolor="#ffaa00" fontname=SimSun shape=record style=filled]
 	"矿井勘探":e -> "化学":w [len=2.00]
-	"教育" [label="0021.教育|{<f0>10秒| <f1>[10, 20] 黄金 }|提高科研速度\l提高单位生产力\l提高工人人口上限\l提高军事人口上限\l" fillcolor="#ffaa00" fontname=SimSun shape=record style=filled]
+	"教育" [label="0021.教育|{<f0>10秒| <f1>[10, 20] 黄金 }|提高科研速度\l提高单位生产力\l提高工人人口上限\l提高军事人口上限\l解锁8【学院】。\l" fillcolor="#ffaa00" fontname=SimSun shape=record style=filled]
 	"行政机构":e -> "教育":w [len=2.00]
 	"经济" [label="0024.经济|{<f0>10秒| <f1>[10, 20] 黄金 }|提高工人人口上限\l提高军事人口上限\l提高单位生产力\l\+\>【市场】\l" fillcolor="#ffaa00" fontname=SimSun shape=record style=filled]
 	"教育":e -> "经济":w [len=2.00]
